@@ -3,7 +3,7 @@ import { Button } from 'react-native-paper';
 
 export function Intro ({navigation}) {
     return (
-        <View style={styles.container}>
+        <View>
             
 
             <ImageBackground 

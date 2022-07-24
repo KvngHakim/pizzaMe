@@ -87,24 +87,24 @@ const Tab = createBottomTabNavigator();
 export function Home () {
     return (
         <Tab.Navigator 
-        screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
+            screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
   
-              if (route.name === 'HomeScreen') {
-                iconName = focused ? 'home' : 'home-outline';
-              } else if (route.name === 'History') {
-                iconName = focused ? 'md-file-tray-stacked' : 'ios-file-tray-stacked-outline';
-              } else if (route.name === 'Customize') {
-                iconName = focused ? 'ios-logo-codepen' : 'ios-logo-codepen';
-              }else if (route.name === 'Profile') {
-                iconName = focused ? 'person-circle' : 'person-circle-outline';
-              }else if (route.name === 'Notifications') {
-                iconName = focused ? 'notifications-circle' : 'notifications-circle-outline';
-              }
+                if (route.name === 'HomeScreen') {
+                    iconName = focused ? 'home' : 'home-outline';
+                } else if (route.name === 'History') {
+                    iconName = focused ? 'md-file-tray-stacked' : 'ios-file-tray-stacked-outline';
+                } else if (route.name === 'Customize') {
+                    iconName = focused ? 'ios-logo-codepen' : 'ios-logo-codepen';
+                }else if (route.name === 'Profile') {
+                    iconName = focused ? 'person-circle' : 'person-circle-outline';
+                }else if (route.name === 'Notifications') {
+                    iconName = focused ? 'notifications-circle' : 'notifications-circle-outline';
+                }
   
               // You can return any component that you like here!
-              return <Ionicons name={iconName} size={size} color={color} />;
+                return <Ionicons name={iconName} size={size} color={color} />;
             },
             tabBarActiveTintColor: '#F76E11',
             tabBarInactiveTintColor: 'gray',

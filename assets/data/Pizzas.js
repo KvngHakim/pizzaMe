@@ -1,3 +1,28 @@
+export const pizzaSizes = [
+    {
+        id: 1,
+        sizeName: 'Single',
+        fee: 1500
+    },
+    {
+        id: 2,
+        sizeName: 'Couple',
+        fee: 2700
+    },
+    {
+        id: 3,
+        sizeName: 'Friends',
+        fee: 4000
+    },
+    {
+        id: 4,
+        sizeName: 'Family',
+        fee: 5900
+    },
+];
+
+
+
 export const pizzas = [
     {
         id: 1,
@@ -6,7 +31,8 @@ export const pizzas = [
             {ingreName:'mozzarella',fee:20,id:21},
             {ingreName:'parmesan',fee:30,id:22},
             {ingreName:'provolone',fee:10,id:23},
-            {ingreName:'blue cheese',fee:50,id:24}
+            {ingreName:'blue cheese',fee:50,id:24},
+            
         ]
     },
     {
