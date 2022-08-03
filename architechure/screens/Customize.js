@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView } from 'react-native';
+import { Button } from 'react-native-paper';
 import { pizzas } from '../../assets/data/Pizzas';
 import { pizzaSizes } from '../../assets/data/Pizzas';
 import Constants from 'expo-constants';
@@ -8,12 +9,12 @@ import { Card } from 'react-native-paper';
 
 
 
-export function customize() {
+export function customize({navigation, route}) {
     const [selected, setSelected] = useState({});
     const [total, setTotal] = useState(0);
     const [pizzaNames, setPizzaNames] = useState('');
     const [spices, setSpices] = useState(['']);
-
+    const [sizeName, setSizeName] = useState('');
 
     const [isPress, setIsPress] = React.useState(false);
 
@@ -24,10 +25,26 @@ export function customize() {
         style: isPress ? styles.btnPress : styles.btnNormal,
         onHideUnderlay: () => setIsPress(false),
         onShowUnderlay: () => setIsPress(true),
-        
-
     };
 
+    
+    function ProccedToDelivery() {
+        if (total > 0) {
+            return <Button mode='outlined' color='white'
+                style={{ marginTop: 20, backgroundColor: '#064635' }} 
+                contentStyle={{paddingVertical:20}}
+                onPress={() => {
+                    navigation.navigate('Order',{
+                        orderTotal: total,
+                        orderPizzaName: pizzaNames,
+                        orderPizzaIngredients: spices,
+                        orderPizzaSize: sizeName
+                    });
+                }}
+            >Continue to delivery</Button>
+        }
+
+    }
 
 
     return (
@@ -65,7 +82,7 @@ export function customize() {
                     <TouchableOpacity
                         style={[styles.pizza, { marginRight: Math.round(Math.random() * 100), marginLeft: Math.round(Math.random() * 100), }]}
                         onPress={() => {
-                            setSpices(spices + ' ' + item.ingreName);
+                            setSpices(spices + ',' + ' ' + item.ingreName);
                             setTotal(total + item.fee);
                         }}
                     >
@@ -83,12 +100,16 @@ export function customize() {
                         style={styles.sizeTouch}
                         onPress={() => {
                             setTotal(total + item.fee)
+                            setSizeName(item.sizeName)
                         }}
                     >
                         <Text style={styles.sizeTitle}>{item.sizeName}</Text>
                     </TouchableOpacity>
                 ))}
             </View>
+
+            {/* continue to delivery button */}
+            {ProccedToDelivery()}
         </View>
     )
 }

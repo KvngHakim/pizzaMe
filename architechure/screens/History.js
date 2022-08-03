@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList, ScrollView } from 'react-native';
 import *  as React from 'react';
+import { useState } from 'react';
 import { Searchbar } from 'react-native-paper';
+import { Theme } from '../theme/Theme'; 
 
 const MyComponent = () => {
-    const [searchQuery, setSearchQuery] = React.useState('');
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const onChangeSearch = query => setSearchQuery(query);
 
     return (
         <Searchbar
@@ -88,7 +89,7 @@ export function History() {
 
 const styles = StyleSheet.create({
     container: {
-
+        paddingHorizontal: Theme.points[2]
     },
     topBar: {
         borderRadius: 30,

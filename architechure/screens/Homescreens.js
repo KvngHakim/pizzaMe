@@ -1,5 +1,5 @@
-import { View, StyleSheet, Image, Text, TouchableOpacity, FlatList } from 'react-native';
-import { Card, TextInput, Title, Paragraph, Button } from 'react-native-paper';
+import { View, StyleSheet, Image, TextInput, Text, TouchableOpacity, FlatList } from 'react-native';
+import { Card,  Title, Paragraph, Button } from 'react-native-paper';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useFonts, Overpass_100Thin, Overpass_200ExtraLight } from '@expo-google-fonts/overpass';
 import { Header } from '../components/Header';
@@ -8,6 +8,7 @@ import { customize } from './Customize';
 import { Profile } from './Profile';
 import { Notifications } from './Notifications';
 import { Ionicons } from '@expo/vector-icons';
+import { Theme} from '../theme/Theme';
 
 const data = {
     favourites: [
@@ -72,7 +73,7 @@ function HomeScreen ({navigation}) {
                             <Card.Content>
                                 <Title>{item.name}</Title>
                                 <Paragraph>{item.note}</Paragraph>
-                                <Button mode='contained' color='coral'>Order</Button>
+                                <Button mode='contained' color={Theme.colors.ui.secondary}>Order</Button>
                             </Card.Content>
                         </Card>
                     );
@@ -125,27 +126,33 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20
     },
     search: {
-        marginVertical: 20,
-        backgroundColor: '#FAEEE0'
+        marginTop: Theme.points[3],
+        paddingVertical: Theme.points[3],
+        paddingLeft: Theme.points[3],
+        borderWidth: 1,
+        borderRadius: 50,
+        fontSize: Theme.points[3],
+        backgroundColor: '#Fff'
     },
     popularHeadingText: {
-        fontSize: 20,
-        marginTop: 20,
-        marginBottom: 5
+        fontSize: Theme.points[4],
+        marginBottom: Theme.points[2],
+        marginTop: Theme.points[3],
+        
     },
     popularItem: {
         width: 120,
         height: 120,
-        paddingVertical: 18,
-        paddingHorizontal: 18,
-        backgroundColor: '#FF9F45',
+        paddingVertical: Theme.points[2],
+        paddingHorizontal: Theme.points[2],
+        backgroundColor: Theme.colors.ui.secondary,
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: 15
 
     },
     popularItemText: {
-        color: '#4A403A',
+        color: Theme.colors.text.primary,
         fontWeight: 'bold'
     }
 });

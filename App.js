@@ -2,6 +2,7 @@ import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { StyleSheet, View, SafeAreaView, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthNavigator } from './architechure/components/AuthNavigator';
+import {Maps} from './architechure/screens/Maps'
 
 
 export default function App() {
@@ -10,9 +11,7 @@ export default function App() {
       <NavigationContainer>
         <AuthNavigator />
       </NavigationContainer>
-      
-
-      
+    
       <ExpoStatusBar style="auto" />
     </SafeAreaView>
   );
