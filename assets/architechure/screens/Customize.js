@@ -9,7 +9,7 @@ import { Card } from 'react-native-paper';
 
 
 
-export function customize({navigation, route}) {
+export function customize({navigation}) {
     const [selected, setSelected] = useState({});
     const [total, setTotal] = useState(0);
     const [pizzaNames, setPizzaNames] = useState('');
