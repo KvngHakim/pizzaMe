@@ -4,10 +4,8 @@ import { useState } from 'react';
 import { Searchbar } from 'react-native-paper';
 import { Theme } from '../theme/Theme'; 
 
-const MyComponent = () => {
+const  MyComponent = () => {
     const [searchQuery, setSearchQuery] = useState('');
-
-
     return (
         <Searchbar
             placeholder="Search"
@@ -51,7 +49,7 @@ export function History() {
                     <Image style={styles.nameIcon} source={require('../../assets/images/eye.png')} />
                 </TouchableOpacity>
             </View>
-            <MyComponent />
+            {/* <MyComponent /> */}
 
             <ScrollView>
                 <Text style={styles.scrollText}>Recent History</Text>
@@ -89,7 +87,7 @@ export function History() {
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: Theme.points[2]
+        // paddingHorizontal: Theme.points[2]
     },
     topBar: {
         borderRadius: 30,

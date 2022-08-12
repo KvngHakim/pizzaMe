@@ -4,12 +4,12 @@ import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollVie
 import { Button } from 'react-native-paper';
 import { pizzas } from '../../assets/data/Pizzas';
 import { pizzaSizes } from '../../assets/data/Pizzas';
-import Constants from 'expo-constants';
-import { Card } from 'react-native-paper';
+// import Constants from 'expo-constants';
+// import { Card } from 'react-native-paper';
 
 
 
-export function customize({navigation}) {
+export function customize({navigation, route}) {
     const [selected, setSelected] = useState({});
     const [total, setTotal] = useState(0);
     const [pizzaNames, setPizzaNames] = useState('');
@@ -35,10 +35,10 @@ export function customize({navigation}) {
                 contentStyle={{paddingVertical:20}}
                 onPress={() => {
                     navigation.navigate('Order',{
-                        orderTotal: total,
-                        orderPizzaName: pizzaNames,
-                        orderPizzaIngredients: spices,
-                        orderPizzaSize: sizeName
+                        orderTotal:total,
+                        orderPizzaName:pizzaNames,
+                        orderPizzaIngredents:spices,
+                        orderPizzaSize:sizeName
                     });
                 }}
             >Continue to delivery</Button>
@@ -48,7 +48,8 @@ export function customize({navigation}) {
 
 
     return (
-        <View style={styles.container}>
+        <ScrollView>
+                 <View style={styles.container}>
             <Text style={styles.heading}>Customize your order</Text>
 
             {/* pizza billing total */}
@@ -111,6 +112,7 @@ export function customize({navigation}) {
             {/* continue to delivery button */}
             {ProccedToDelivery()}
         </View>
+        </ScrollView>
     )
 }
 
