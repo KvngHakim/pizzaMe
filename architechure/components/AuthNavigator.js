@@ -7,6 +7,7 @@ import { Loop } from '../components/loop';
 import { Theme } from '../theme/Theme';
 import { Order } from '../screens/Order';
 import { Signin } from '../screens/Signin';
+import { Signup } from '../screens/Signup';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,7 @@ export function AuthNavigator () {
             />
             <Stack.Screen name='Order' component={Order} />
             <Stack.Screen name='Sign_in' component={Signin} />
+            <Stack.Screen name='Sign_up' component={Signup} />
         </Stack.Navigator>
     )
 }

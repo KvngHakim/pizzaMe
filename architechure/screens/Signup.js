@@ -1,9 +1,21 @@
-import { StyleSheet, TextInput, Text, View,  } from 'react-native';
+import { StyleSheet, TextInput, Text, View, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-paper';
 
-export function Signin({navigation}) {
+export function Signup({navigation}) {
     return (
         <View style={styles.container}>
+            <TextInput
+                placeholder='Enter your First Name'
+                style={styles.email}
+            />
+            <TextInput
+                placeholder='Enter your Last Name'
+                style={styles.email}
+            />
+            <TextInput
+                placeholder='Enter your Phone Number'
+                style={styles.email}
+            />
             <TextInput
                 placeholder='Enter your Email address'
                 style={styles.email}
@@ -14,12 +26,15 @@ export function Signin({navigation}) {
                 style={styles.passWord}
             />
             <View style={styles.signinBar}>
-                <Text style={styles.signinText}>Don't have an account?</Text>
-                <Button color='white' style={styles.btn} mode='text'
+                <Text style={styles.signinText}>Already have an account?</Text>
+                <TouchableOpacity
                     onPress={() => {
-                        navigation.navigate('Sign_up')
+                        navigation.navigate('Sign_in')
                     }}
-                >Sign Up</Button>
+                >
+                    <Text style={{}}>Sign in</Text>
+                </TouchableOpacity>
+                <Button color='white' style={styles.btn} mode='text'>Sign Up</Button>
             </View>
         </View>
     )
@@ -30,36 +45,36 @@ export function Signin({navigation}) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'orange',
+        backgroundColor: 'purple',
         justifyContent: 'center',
         alignContent: 'center'
     },
-    email:{
+    email: {
         borderRadius: 10,
         borderWidth: 2,
         padding: 20,
         margin: 20,
         backgroundColor: 'white'
     },
-    passWord:{
+    passWord: {
         borderRadius: 10,
         borderWidth: 2,
         padding: 20,
         margin: 20,
         backgroundColor: 'white'
     },
-    signinText:{
-        
+    signinText: {
+
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold'
     },
-    signinBar:{
+    signinBar: {
         margin: 20,
         flexDirection: 'row',
         justifyContent: 'space-around'
     },
-    btn:{
-        
+    btn: {
+
     }
 })
