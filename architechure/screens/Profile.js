@@ -5,7 +5,19 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStarHalfStroke } from '@fortawesome/free-solid-svg-icons';
 
 
-export function Profile() {
+export function Profile({navigation, route}) {
+    const {profileEmail, profileActive} = route.params;
+
+    function Logout() {
+        if (profileActive == true) {
+            return <Button mode='outlined' color='white'
+                style={{ marginTop: 20, backgroundColor: '#064635' }} 
+                contentStyle={{paddingVertical:20}}
+            >Continue to delivery</Button>
+        }
+
+    }
+
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -17,7 +29,7 @@ export function Profile() {
                     <Text style={styles.headBar}>PROFILE</Text>
                     <Image source={require('../../assets/images/jack.jpg')} style={styles.pPic} />
                     <Text style={styles.nameBar}>Jack Robinson</Text>
-                    <Text style={styles.email}>meetjoeblack@gmail.com</Text>
+                    <Text style={styles.email}>{profileEmail}</Text>
                     <View style={styles.editBar}>
                         <Button mode='text' style={styles.btn}>Edit Details <Image source={require('../../assets/images/buttonPic.png')} style={styles.editDetails} /></Button>
                     </View>
@@ -58,6 +70,8 @@ export function Profile() {
                         <FontAwesomeIcon icon={faStarHalfStroke} color='#FF9F45' size={40} style={{ marginRight: 5 }} />
                     </View>
                     <Text style={styles.rate}>Rate Us</Text>
+
+                    {Logout()}
                 </View>
 
                 {/*icon to point right */}
