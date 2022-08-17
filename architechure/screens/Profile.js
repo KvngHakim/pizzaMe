@@ -7,63 +7,65 @@ import { faStarHalfStroke } from '@fortawesome/free-solid-svg-icons';
 
 export function Profile() {
     return (
-        <View style={styles.container}>
-            <View style={styles.bio}>
-                <View style={styles.topHeader}>
-                    <Image style={[styles.camera,{backgroundColor:'grey'}]} source={require('../../assets/images/camera.png')} />
-                    <Text style={styles.newText}>Edit details</Text>
-                </View>
-                <Text style={styles.headBar}>PROFILE</Text>
-                <Image source={require('../../assets/images/jack.jpg')} style={styles.pPic} />
-                <Text style={styles.nameBar}>Jack Robinson</Text>
-                <Text style={styles.email}>meetjoeblack@gmail.com</Text>
-                <View style={styles.editBar}>
-                    <Button mode='text' style={styles.btn}>Edit Details <Image source={require('../../assets/images/buttonPic.png')} style={styles.editDetails} /></Button>
-                </View>
-            </View>
-            <ScrollView style={styles.details}>            
-                <View style={styles.city}>
-                    <Image style={styles.icons} source={require('../../assets/images/location.png')} />
-                    <Text style={styles.cityText}>Ikeja, Lagos</Text>
-                    <Image style={styles.icons} source={require('../../assets/images/next.png')} />
-                </View>
-
-                <View style={styles.address}>
-                    <Image style={styles.icons} source={require('../../assets/images/homeAddress.png')} />
-                    <View style={styles.addressTextBar}>
-                    <Text style={styles.addressText1}>62 Gado Nasko Road,</Text>
-                    <Text style={styles.addressText2}>Kubwa, Bwari</Text>
+        <ScrollView>
+            <View style={styles.container}>
+                <View style={styles.bio}>
+                    <View style={styles.topHeader}>
+                        <Image style={[styles.camera, { backgroundColor: 'grey' }]} source={require('../../assets/images/camera.png')} />
+                        <Text style={styles.newText}>Edit details</Text>
                     </View>
-                    <Image style={styles.icons} source={require('../../assets/images/next.png')} />
+                    <Text style={styles.headBar}>PROFILE</Text>
+                    <Image source={require('../../assets/images/jack.jpg')} style={styles.pPic} />
+                    <Text style={styles.nameBar}>Jack Robinson</Text>
+                    <Text style={styles.email}>meetjoeblack@gmail.com</Text>
+                    <View style={styles.editBar}>
+                        <Button mode='text' style={styles.btn}>Edit Details <Image source={require('../../assets/images/buttonPic.png')} style={styles.editDetails} /></Button>
+                    </View>
+                </View>
+                <ScrollView style={styles.details}>
+                    <View style={styles.city}>
+                        <Image style={styles.icons} source={require('../../assets/images/location.png')} />
+                        <Text style={styles.cityText}>Ikeja, Lagos</Text>
+                        <Image style={styles.icons} source={require('../../assets/images/next.png')} />
+                    </View>
+
+                    <View style={styles.address}>
+                        <Image style={styles.icons} source={require('../../assets/images/homeAddress.png')} />
+                        <View style={styles.addressTextBar}>
+                            <Text style={styles.addressText1}>62 Gado Nasko Road,</Text>
+                            <Text style={styles.addressText2}>Kubwa, Bwari</Text>
+                        </View>
+                        <Image style={styles.icons} source={require('../../assets/images/next.png')} />
+                    </View>
+
+                    <View style={styles.city}>
+                        <Image style={styles.icons} source={require('../../assets/images/hide.png')} />
+                        <Text style={styles.nt}>Change password</Text>
+                        <Image style={styles.icons} source={require('../../assets/images/next.png')} />
+                    </View>
+
+                    <View style={styles.logoutBar}>
+                        <Image style={styles.icons} source={require('../../assets/images/logout.png')} />
+                        <Text style={styles.logoutText}>Logout</Text>
+                    </View>
+                </ScrollView>
+                <View style={styles.ratBar}>
+                    <View style={styles.rating}>
+                        <FontAwesomeIcon icon={faStar} color='#FF9F45' size={40} style={{ marginRight: 5 }} />
+                        <FontAwesomeIcon icon={faStar} color='#FF9F45' size={40} style={{ marginRight: 5 }} />
+                        <FontAwesomeIcon icon={faStar} color='#FF9F45' size={40} style={{ marginRight: 5 }} />
+                        <FontAwesomeIcon icon={faStar} color='#FF9F45' size={40} style={{ marginRight: 5 }} />
+                        <FontAwesomeIcon icon={faStarHalfStroke} color='#FF9F45' size={40} style={{ marginRight: 5 }} />
+                    </View>
+                    <Text style={styles.rate}>Rate Us</Text>
                 </View>
 
-                <View style={styles.city}>
-                    <Image style={styles.icons} source={require('../../assets/images/hide.png')} />
-                    <Text style={styles.nt}>Change password</Text>
-                    <Image style={styles.icons} source={require('../../assets/images/next.png')} />
-                </View>
+                {/*icon to point right */}
 
-                <View style={styles.logoutBar}>
-                    <Image style={styles.icons} source={require('../../assets/images/logout.png')} />
-                    <Text style={styles.logoutText}>Logout</Text>
-                </View>
-            </ScrollView>
-            <View style={styles.ratBar}>
-                <View style={styles.rating}>
-                    <FontAwesomeIcon icon={faStar} color='#FF9F45' size={40} style={{ marginRight: 5 }} />
-                    <FontAwesomeIcon icon={faStar} color='#FF9F45' size={40} style={{ marginRight: 5 }} />
-                    <FontAwesomeIcon icon={faStar} color='#FF9F45' size={40} style={{ marginRight: 5 }} />
-                    <FontAwesomeIcon icon={faStar} color='#FF9F45' size={40} style={{ marginRight: 5 }} />
-                    <FontAwesomeIcon icon={faStarHalfStroke} color='#FF9F45' size={40} style={{ marginRight: 5 }} />
-                </View>
-                <Text style={styles.rate}>Rate Us</Text>
+
             </View>
 
-            {/*icon to point right */}
-
-
-        </View>
-
+        </ScrollView>
 
     )
 }
@@ -97,8 +99,8 @@ const styles = StyleSheet.create({
         marginBottom: 10
 
     },
-    addressTextBar:{
-        
+    addressTextBar: {
+
     },
     nt: {
         fontSize: 25,
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
         color: '94B49F',
         marginTop: 15
     },
-    logoutText:{
+    logoutText: {
         fontSize: 40,
         fontStyle: 'italic',
         color: '94B49F',
@@ -132,7 +134,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         alignSelf: 'center',
         color: '495C83',
-        justifyContent:'center'
+        justifyContent: 'center'
     },
     email: {
         fontSize: 28,
@@ -156,7 +158,7 @@ const styles = StyleSheet.create({
         margin: 10,
         backgroundColor: '#FFBC80'
     },
-    address:{
+    address: {
         flexDirection: 'row',
         justifyContent: 'space-around',
         borderRadius: 50,
@@ -166,7 +168,7 @@ const styles = StyleSheet.create({
         margin: 10,
         backgroundColor: '#FFBC80'
     },
-    logoutBar:{
+    logoutBar: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         borderRadius: 50,
@@ -185,7 +187,7 @@ const styles = StyleSheet.create({
         height: 60,
         alignSelf: 'flex-start'
     },
-    camera:{
+    camera: {
         width: 60,
         height: 60,
         borderRadius: 30,
@@ -196,10 +198,10 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginBottom: 5
     },
-    newText:{
+    newText: {
         fontSize: 20,
         color: 'black',
-        fontStyle:'italic',
+        fontStyle: 'italic',
         alignSelf: 'flex-end',
         alignContent: 'flex-end',
         alignItems: 'flex-end'

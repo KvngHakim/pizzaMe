@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList, ScrollView } from 'react-native';
 import *  as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Searchbar } from 'react-native-paper';
 import { Theme } from '../theme/Theme'; 
+import { db } from '../../Services/Firebase';
+import { onSnapshot, doc, collection, updateDoc, addDoc } from 'firebase/firestore';
 
 const  MyComponent = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -15,9 +17,12 @@ const  MyComponent = () => {
     );
 };
 
+// const [pizzaOrders,setPizzaOrders]+ = useState([]);
 
 const data = {
     history: [
+
+        // {pizzaOrders}
         { order: 'Mozzarella Pizza', price: '13450', quantity: '3 boxes', date: '15th July 2022', id: '1', status: 'https://cdn-icons-png.flaticon.com/512/3472/3472620.png' },
         { order: 'Pepperoni Pizza', price: '15450', quantity: '1 box(es)', date: '19th July 2022', id: '2', status: 'https://cdn-icons-png.flaticon.com/512/3472/3472620.png' },
         { order: 'Broccoli Pizza', price: '16450', quantity: '4 boxes', date: '11th August 2022', id: '3', status: 'https://cdn-icons-png.flaticon.com/512/3472/3472620.png' },
@@ -34,6 +39,26 @@ const data = {
 
 
 export function History() {
+    useEffect(() => {}, [])
+        addDoc(doc(db, 'purchases', 'PwF3Kg2ojnyzduiV8CEa' ),(doc) => {
+            console.log(doc.data());
+        }, [] )
+
+
+        
+
+    // useEffect(() => {
+    //     onSnapshot(collection(db,'orders'), (querySnapshot) => {
+    //         const allOrders = [];
+    //         querySnapshot.forEach((doc) => {
+    //             allOrders.push(doc.data());
+    //             setPizzaOrders(allOrders)
+    //         })
+    //     },
+    //     (error) => console.log(error));
+    // },[]);
+  
+    // console.log(pizzaOrders);
     return (
         <View>
             <View style={styles.topBar}>
@@ -65,7 +90,7 @@ export function History() {
                                 </View>
                                 <View>
                                     <Text style={styles.order}>{item.order}</Text>
-                                    <Text style={styles.quantity}>{item.quantity}</Text>
+                                    <Text style={styles.quantity}>{item.size}</Text>
                                 </View>
                                 <View>
                                     <Text style={styles.order}>PRICE</Text>

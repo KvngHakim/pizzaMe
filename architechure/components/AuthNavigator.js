@@ -6,6 +6,7 @@ import { Popular } from '../screens/Popular';
 import { Loop } from '../components/loop';
 import { Theme } from '../theme/Theme';
 import { Order } from '../screens/Order';
+import { Signin } from '../screens/Signin';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ export function AuthNavigator () {
                 }} 
             />
             <Stack.Screen name='Order' component={Order} />
+            <Stack.Screen name='Sign_in' component={Signin} />
         </Stack.Navigator>
     )
 }

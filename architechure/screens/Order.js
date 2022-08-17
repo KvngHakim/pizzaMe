@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Alert, Image, TextInput } from 'react-native';
 import { Button, } from 'react-native-paper';
 import { Theme } from '../theme/Theme';
 import { db } from '../../Services/Firebase';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc , updateDoc, addDoc, collection} from 'firebase/firestore';
 
 export function Order({ navigation, route }) {
 
@@ -21,7 +21,7 @@ export function Order({ navigation, route }) {
         const now = new Date();
         const nowTimestamp = now.getTime(); 
 
-        setDoc(doc(db, 'purchases', 'PwF3Kg2ojnyzduiV8CEa'), {
+        addDoc(collection(db, 'purchases', 'PwF3Kg2ojnyzduiV8CEa'), {
             address: address,
             email: email,
             firstname: firstName,
@@ -40,6 +40,17 @@ export function Order({ navigation, route }) {
                 [{ text: 'Okay, Thanks', onPress: () => {navigation.navigate('Home')} }]
             )
         })
+        .catch(() => {
+
+        })
+    }
+
+    //update document on firestore
+    function updateDocument () {
+        updateDoc(doc(db,'purchases','PwF3Kg2ojnyzduiV8CEa' ),{
+
+        }).then(() => console.log('Record Updated'))
+        .catch(error => console.log('Error messsage',error))
     }
 
     return (
@@ -85,7 +96,7 @@ export function Order({ navigation, route }) {
 
             <Button mode='outlined' color='white'
                 style={{ marginTop: 20, backgroundColor: Theme.colors.ui.primary }} contentStyle={{ paddingVertical: 20 }}
-                onPress={create}
+                onPress={updateDocument}
             >Complete Order
 
 

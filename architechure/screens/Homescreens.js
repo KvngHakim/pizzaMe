@@ -1,5 +1,8 @@
+// import { useFonts, Pacifico_400Regular, } from '@expo-google-fonts/Pacifico';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons'
 import { View, StyleSheet, Image, TextInput, Text, TouchableOpacity, FlatList } from 'react-native';
-import { Card,  Title, Paragraph, Button } from 'react-native-paper';
+import { Card, Title, Paragraph, Button } from 'react-native-paper';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useFonts, Overpass_100Thin, Overpass_200ExtraLight } from '@expo-google-fonts/overpass';
 import { Header } from '../components/Header';
@@ -8,15 +11,15 @@ import { customize } from '../screens/Customize';
 import { Profile } from '../screens/Profile';
 import { Notifications } from '../screens/Notifications';
 import { Ionicons } from '@expo/vector-icons';
-import { Theme} from '../theme/Theme';
+import { Theme } from '../theme/Theme';
 
 const data = {
     favourites: [
-        { name: 'Mozzarella', price:3450, rating:3.5, id: '1', thumbnail: 'https://cdn-icons.flaticon.com/png/512/2454/premium/2454219.png?token=exp=1656954610~hmac=205b712d391169cf1d932a9d0e7ba82a' },
-        { name: 'Parmesan', price:3250, rating:2.5, id: '2', thumbnail: 'https://cdn-icons.flaticon.com/png/512/2497/premium/2497913.png?token=exp=1656594472~hmac=7c065c3ac82f4394166025fe725dcb8d' },
-        { name: 'Provolone', price:2500, rating:4.5, id: '3', thumbnail: 'https://cdn-icons-png.flaticon.com/512/1384/1384676.png' },
-        { name: 'Blue Cheese',price:4950, rating:4, id: '4', thumbnail: 'https://cdn-icons-png.flaticon.com/512/2674/2674065.png' },
-        { name: 'Broccoli', price:3050, rating:1, id: '5', thumbnail: 'https://cdn-icons-png.flaticon.com/512/432/432339.png' }
+        { name: 'Mozzarella', price: 3450, rating: 3.5, id: '1', thumbnail: 'https://cdn-icons.flaticon.com/png/512/2454/premium/2454219.png?token=exp=1656954610~hmac=205b712d391169cf1d932a9d0e7ba82a' },
+        { name: 'Parmesan', price: 3250, rating: 2.5, id: '2', thumbnail: 'https://cdn-icons.flaticon.com/png/512/2497/premium/2497913.png?token=exp=1656594472~hmac=7c065c3ac82f4394166025fe725dcb8d' },
+        { name: 'Provolone', price: 2500, rating: 4.5, id: '3', thumbnail: 'https://cdn-icons-png.flaticon.com/512/1384/1384676.png' },
+        { name: 'Blue Cheese', price: 4950, rating: 4, id: '4', thumbnail: 'https://cdn-icons-png.flaticon.com/512/2674/2674065.png' },
+        { name: 'Broccoli', price: 3050, rating: 1, id: '5', thumbnail: 'https://cdn-icons-png.flaticon.com/512/432/432339.png' }
     ],
     bakersChoice: [
         { name: 'pancetta', id: '6', note: 'Made with the finest Italian ingredients', thumbnail: 'https://images.pexels.com/photos/1146760/pexels-photo-1146760.jpeg' },
@@ -27,7 +30,7 @@ const data = {
     ]
 }
 
-function HomeScreen ({navigation}) {
+function HomeScreen({ navigation }) {
     let [FontsLoaded] = useFonts({
         Overpass_200ExtraLight,
         Overpass_100Thin
@@ -35,7 +38,18 @@ function HomeScreen ({navigation}) {
 
     return (
         <View style={styles.container} >
-            <Header />
+            <View style={styles.header}>
+                <View style={styles.brand}>
+                    <Text style={styles.brandName}>PizzaMe</Text>
+                </View>
+                <TouchableOpacity 
+                onPress={() => {
+                    navigation.navigate('Sign_in')
+                }}
+                >
+                    <FontAwesomeIcon icon={faArrowRightToBracket} size={Theme.points[4]} />
+                </TouchableOpacity>
+            </View>
 
             <TextInput
                 placeholder='search for a topin'
@@ -47,16 +61,16 @@ function HomeScreen ({navigation}) {
             <View style={styles.popular}>
                 <Text style={styles.popularHeadingText}>Polular topins</Text>
                 <FlatList data={data.favourites} renderItem={({ item }) => {
-                    
+
                     return (
-                        <TouchableOpacity style={styles.popularItem} onPress={ () => {
-                            navigation.navigate('Popular',{
-                                pizzaImg:item.thumbnail,
-                                pizzaName:item.name,
-                                pizzaRating:item.rating,
-                                pizzaPrice:item.price
+                        <TouchableOpacity style={styles.popularItem} onPress={() => {
+                            navigation.navigate('Popular', {
+                                pizzaImg: item.thumbnail,
+                                pizzaName: item.name,
+                                pizzaRating: item.rating,
+                                pizzaPrice: item.price
                             });
-                        } }>
+                        }}>
                             <Image source={{ uri: item.thumbnail }} style={{ width: 60, height: 60 }} />
                             <Text style={styles.popularItemText}>{item.name}</Text>
                         </TouchableOpacity>
@@ -69,7 +83,7 @@ function HomeScreen ({navigation}) {
                 <Text style={styles.popularHeadingText}>Baker's choice</Text>
                 <FlatList data={data.bakersChoice} renderItem={({ item }) => {
                     return (
-                        <Card style={{marginBottom:10}}>
+                        <Card style={{ marginBottom: 10 }}>
                             <Card.Cover source={{ uri: item.thumbnail }} />
                             <Card.Content>
                                 <Title>{item.name}</Title>
@@ -86,37 +100,37 @@ function HomeScreen ({navigation}) {
 
 const Tab = createBottomTabNavigator();
 
-export function Home () {
+export function Home() {
     return (
-        <Tab.Navigator 
+        <Tab.Navigator
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
-                let iconName;
-  
-                if (route.name === 'HomeScreen') {
-                    iconName = focused ? 'home' : 'home-outline';
-                } else if (route.name === 'History') {
-                    iconName = focused ? 'md-file-tray-stacked' : 'ios-file-tray-stacked-outline';
-                } else if (route.name === 'Customize') {
-                    iconName = focused ? 'ios-logo-codepen' : 'ios-logo-codepen';
-                }else if (route.name === 'Profile') {
-                    iconName = focused ? 'person-circle' : 'person-circle-outline';
-                }else if (route.name === 'Notifications') {
-                    iconName = focused ? 'notifications-circle' : 'notifications-circle-outline';
-                }
-  
-              // You can return any component that you like here!
-                return <Ionicons name={iconName} size={size} color={color} />;
-            },
-            tabBarActiveTintColor: '#F76E11',
-            tabBarInactiveTintColor: 'gray',
-          })}
+                    let iconName;
+
+                    if (route.name === 'HomeScreen') {
+                        iconName = focused ? 'home' : 'home-outline';
+                    } else if (route.name === 'History') {
+                        iconName = focused ? 'md-file-tray-stacked' : 'ios-file-tray-stacked-outline';
+                    } else if (route.name === 'Customize') {
+                        iconName = focused ? 'ios-logo-codepen' : 'ios-logo-codepen';
+                    } else if (route.name === 'Profile') {
+                        iconName = focused ? 'person-circle' : 'person-circle-outline';
+                    } else if (route.name === 'Notifications') {
+                        iconName = focused ? 'notifications-circle' : 'notifications-circle-outline';
+                    }
+
+                    // You can return any component that you like here!
+                    return <Ionicons name={iconName} size={size} color={color} />;
+                },
+                tabBarActiveTintColor: '#F76E11',
+                tabBarInactiveTintColor: 'gray',
+            })}
         >
-            <Tab.Screen name='HomeScreen' component={HomeScreen} options={{headerShown:false}} />
+            <Tab.Screen name='HomeScreen' component={HomeScreen} options={{ headerShown: false }} />
             <Tab.Screen name='History' component={History} />
-            <Tab.Screen name='Customize' component={customize} options={{headerShown:false}}  />
-            <Tab.Screen name='Profile' component={Profile} options={{headerShown:false}} />
-            <Tab.Screen name='Notifications' component={Notifications}  />
+            <Tab.Screen name='Customize' component={customize} options={{ headerShown: false }} />
+            <Tab.Screen name='Profile' component={Profile} options={{ headerShown: false }} />
+            <Tab.Screen name='Notifications' component={Notifications} />
         </Tab.Navigator>
     )
 }
@@ -139,7 +153,7 @@ const styles = StyleSheet.create({
         fontSize: Theme.points[4],
         marginBottom: Theme.points[2],
         marginTop: Theme.points[3],
-        
+
     },
     popularItem: {
         width: 120,
@@ -155,5 +169,28 @@ const styles = StyleSheet.create({
     popularItemText: {
         color: Theme.colors.text.primary,
         fontWeight: 'bold'
-    }
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingTop: Theme.points[2]
+    },
+    brand: {
+        flexDirection: 'row'
+    },
+    logo: {
+        width: 60,
+        height: 60,
+        marginRight: 5
+    },
+    signinIcon: {
+        width: 48,
+        height: 48
+    },
+    brandName: {
+        fontSize: Theme.points[4],
+        fontWeight: 'bold',
+        // fontFamily: 'Pacifico_400Regular'
+
+    },
 });
